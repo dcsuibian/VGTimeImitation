@@ -1,0 +1,18 @@
+*{
+    margin:0;
+    padding: 0;
+}
+.user_nav{
+    position: fixed;
+    width: 50px;
+    padding-top: 80px;
+}
+.user_nav > div{
+    width: 100%;
+    min-height: 10000px;
+    background-color: blue;
+}
+.container{
+    background-color: #1c7430;
+    height: 10000px;
+}

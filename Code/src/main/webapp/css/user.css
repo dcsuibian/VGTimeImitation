@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    list-style: none;
+}
+.user_nav{
+    width: 50px;
+    height: 10000px;
+    position: fixed;
+    padding-top: 80px;
+}
+.user_nav_content{
+    width: 100%;
+    height: 100%;
+    background-color: #e8e8e8;
+}
+.user_nav_content>div{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-top: 1px gray solid;
+    padding: 10px;
+}
+.user_nav_content>div a{
+    color: black;
+}
+.user_nav_content>div a i{
+    font-size: 30px;
+}
+.user_main{
+    display: none;
+    position: fixed;
+    width: 400px;
+    height: 10000px;
+    left: 50px;
+    background-color: white;
+    border-right: 1px solid gray;
+}
+.user_main>div{
+    padding-top: 80px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+#loginPanel{
+}
+.user_main h2{
+    width: 100%;
+    padding-top: 30px;
+    margin-bottom: 35px;
+    text-align: center;
+    font-size: 20px;
+    color: rgba(99,107,128,0.5);
+    z-index: 2;
+}
+#login_phoneNumber{
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+#login_password{
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+#btnlogin{
+    width: 100%;
+    height: 48px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.forget_password{
+    width: 100%;
+    text-align: center;
+}
+#registerPanel{
+    display: none;
+}
+#register_now{
+    width: 100%;
+    margin-top: 30px;
+}
+#btn_register{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#login_now{
+    width: 100%;
+    margin-bottom: 30px;
+}
+#loginedPanel{
+    display: none;
+}

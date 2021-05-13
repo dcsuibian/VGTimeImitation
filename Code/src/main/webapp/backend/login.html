@@ -1,0 +1,30 @@
+<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/backend/login.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <title>后台用户登录</title>
+</head>
+<body>
+<div class="container">
+    <div class="col-6 offset-3">
+        <div class="login_panel">
+            <form class="login_form" action="/backend/user/login" method="post">
+                <h3>登录</h3>
+                <label>账号</label>
+                <input class="input-group" type="text" placeholder="请输入手机号" name="phoneNumber">
+                <label>密码</label>
+                <input class="input-group" type="password" placeholder="8位以上字母或数字" name="password" value="password">
+                <button type="submit" class="btn btn-primary">登录</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -8,4 +8,5 @@ from scrapy import Item,Field
 
 class Topic(scrapy.Item):
     id=Field()
+    title=Field()
     abstract=Field()

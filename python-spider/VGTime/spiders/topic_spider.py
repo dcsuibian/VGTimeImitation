@@ -18,5 +18,9 @@ class TopicSpider(scrapy.Spider):
                 yield scrapy.Request(line,callback=self.parse)
 
     def parse(self, response):
-        res = response.xpath('//div[@class="abstract"]/p/text()').get()
-        print(res)
+        id=response.xpath('//input[@id="topicId"]/@value').get()
+        title=response.xpath('//h1[@class="art_tit"]/text()').get()
+        abstract = response.xpath('//div[@class="abstract"]/p/text()').get()
+        print(id)
+        print('title:',title)
+        print(abstract)

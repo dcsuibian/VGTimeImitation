@@ -4,9 +4,14 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-from scrapy import Item,Field
+from scrapy import Item, Field
+
 
 class Topic(scrapy.Item):
-    id=Field()
-    title=Field()
-    abstract=Field()
+    id = Field()
+    title = Field()
+    abstract = Field()
+    content = Field()
+    editor_name = Field()
+    author_name = Field()
+    time = Field()

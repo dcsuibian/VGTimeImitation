@@ -21,6 +21,4 @@ class TopicSpider(scrapy.Spider):
         id=response.xpath('//input[@id="topicId"]/@value').get()
         title=response.xpath('//h1[@class="art_tit"]/text()').get()
         abstract = response.xpath('//div[@class="abstract"]/p/text()').get()
-        print(id)
-        print('title:',title)
-        print(abstract)
+

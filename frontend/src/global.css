@@ -1,4 +1,21 @@
-*{
-    margin:0;
-    padding: 0;
+/* 
+设置通用内容
+字体、盒子等
+ */
+* {
+  font-family: "PingFang SC", "Microsoft YaHei", "微软雅黑", "SimSun", "宋体",
+    Arial, "STHeiti", "华文黑体", Helvetica, Tahoma, Arial sans-serif !important;
+  margin: 0;
+  padding: 0;
+  word-break:break-all;/* 换行相关 */
+}
+
+/* 定义基本颜色 */
+.color {
+  color: #2abaca !important;
+}
+
+/* 清浮动 */
+.clear {
+  clear: both;
 }

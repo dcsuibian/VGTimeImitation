@@ -65,6 +65,7 @@ export default {
         const topic = JSON.parse(JSON.stringify(res.data)); // 深拷贝
         this.topic = topic;
         this.topic.time = moment(this.topic.time);
+        document.title = 'VGTimeImitation - '+this.topic.title
       });
     },
   },

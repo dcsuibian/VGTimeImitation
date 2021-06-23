@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="166px" height="46px" viewBox="0 0 166 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39 (31667) - http://www.bohemiancoding.com/sketch -->
+    <title>Overlay_Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M102.685254,38 L132.090612,38 L132.090612,8 L102.685254,8 L102.685254,38 Z M105.952516,34.7 L128.82335,34.7 L128.82335,11.3 L105.952516,11.3 L105.952516,34.7 Z M86.9043781,33.3720833 L99.9734263,33.3720833 L99.9734263,13.25 L86.9043781,13.25 L86.9043781,33.3720833 Z M90.1716402,30.0720833 L96.7061642,30.0720833 L96.7061642,16.55 L90.1716402,16.55 L90.1716402,30.0720833 Z M133.495535,38 L158,38 L158,8 L133.495535,8 L133.495535,38 Z M136.762797,34.7 L154.732738,34.7 L154.732738,11.3 L136.762797,11.3 L136.762797,34.7 Z M60.6029188,38 L85.107384,38 L85.107384,8 L60.6029188,8 L60.6029188,38 Z M63.8701808,34.7 L81.840122,34.7 L81.840122,11.3 L63.8701808,11.3 L63.8701808,34.7 Z M153.033762,24.7340043 L153.033762,13.25 L138.755827,13.25 L138.755827,32.75 L153.033762,32.75 L153.033762,27.9355881 L145.101576,27.9355881 L145.101576,18.0644119 L147.481231,18.0644119 L147.481231,24.7095242 L153.033762,24.7340043 Z M127.108037,13.25 L127.108037,32.75 L122.317415,32.75 L122.317415,18.0754279 L119.922103,18.0754279 L119.922103,32.75 L115.13148,32.75 L115.13148,18.0754279 L112.736169,18.0754279 L112.736169,32.75 L107.945546,32.75 L107.945546,13.25 L127.108037,13.25 Z M34.3014594,8 L58.348508,8 L58.348508,38 L34.3014594,38 L34.3014594,8 Z M48.8407754,27.93625 L43.9398824,27.93625 L43.9398824,17.2416667 L55.3752995,17.2416667 L55.3752995,11.2720833 L37.4053583,11.2720833 L37.4053583,34.7279167 L55.3752995,34.7279167 L55.3752995,21.3529167 L48.8407754,21.3333333 L48.8407754,27.93625 Z M8,8 L32.0470486,8 L32.0470486,38 L8,38 L8,8 Z M20.0235243,27.5 C19.7594855,23.1372867 19.1535946,17.5745522 18.3053472,11 L11.0058811,11 L15.0047613,34.25 L25.5188944,34.25 L29.0411675,11 L21.7417013,11 C21.7417013,11 20.4796649,23.0887327 20.0235243,27.5 Z M76.3733573,18.0754279 L76.3733573,32.75 L69.8293037,32.75 L69.8293037,18.0754279 L65.8632106,18.0754279 L65.8632106,13.25 L80.1411457,13.25 L80.1411457,18.0754279 L76.3733573,18.0754279 Z" id="path-1"></path>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="large--16-columns-Desktop-HD" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD_游戏资料卡页_列表_完整" transform="translate(-11.000000, -18.000000)">
+            <g id="nav_category_top">
+                <g id="icon_Logo">
+                    <g>
+                        <g id="Group-10" transform="translate(11.000000, 18.000000)">
+                            <g id="Overlay_Logo">
+                                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                                <use fill-opacity="0.66" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -8,7 +8,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    redirect:'/topic/1126958', // 开发时临时使用
   },
   {
     path: '/about',
@@ -21,10 +22,17 @@ const routes = [
   {
     path: '/test',
     name: 'Test',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Test.vue')
+    component: () => import(/* webpackChunkName: "test" */ '../views/Test.vue')
+  },
+  {
+    path: '/topic/:id',
+    name: 'TopicTemplate',
+    component: () => import('../views/topic/Template'),
+    props:route=>{
+      return {
+        id:Number(route.params.id),//交给组件之前就把id转成数字
+      }
+    }
   }
 ]
 

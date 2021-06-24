@@ -1,9 +1,9 @@
 import Mock from "mockjs";
 import { builder } from "../util";
 
-Mock.mock(/\/topic\/(\d+)/, "get", (options) => {
+Mock.mock(/\/topics\/(\d+)/, "get", (options) => {
   console.debug("接收到topic访问请求，options：", options);
-  const id=Number(options.url.match(/\/topic\/(\d+)/)[1])
+  const id=Number(options.url.match(/\/topics\/(\d+)/)[1])
   console.debug("请求的topic的id：", id);
   if(1126958!==id){
     return builder(null,"fail",404)

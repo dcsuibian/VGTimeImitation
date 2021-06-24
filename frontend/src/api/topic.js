@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getTopic(id){
     return request({
-        url:'/topic/'+id,
+        url:'/topics/'+id,
         method:'get',
     })
 }

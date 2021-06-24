@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/topic/:id',
     name: 'TopicTemplate',
-    component: () => import(/* webpackChunkName: "topic-template" */'../views/topic/Template'),
+    component: () => import('../views/topic/Template'),
     props:route=>{
       return {
         id:Number(route.params.id),//交给组件之前就把id转成数字

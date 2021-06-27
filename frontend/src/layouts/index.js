@@ -1,2 +1,2 @@
-import BasicLayout from "./BasicLayout.vue";
+import BasicLayout from "./BasicLayout";
 export { BasicLayout };

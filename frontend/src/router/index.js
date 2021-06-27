@@ -8,16 +8,18 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Index',
     component: BasicLayout,
     redirect:'/test',
     children:[
       {
         path: '/test',
+        // name:'Test',
         component: Test,
       },
       {
         path: '/topic/:id',
+        // name:'TopicTemplate',
         component: () => import('../views/topic/Template'),
         props:route=>{
           return {

@@ -1,6 +1,6 @@
 <template>
     <div class="test">
-        <h>你现在看到的是Test.vue</h>
+        <p>你现在看到的是Test.vue</p>
     </div>
 </template>
 <script>
@@ -12,6 +12,6 @@ export default {
 .test{
     width: 100%;
     height: 100%;
-    background-color: blue;
+    background-color: pink;
 }
 </style>

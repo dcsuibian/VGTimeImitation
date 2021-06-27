@@ -7,13 +7,8 @@
     Arial, "STHeiti", "华文黑体", Helvetica, Tahoma, Arial sans-serif !important;
   margin: 0;
   padding: 0;
-  word-break:break-all;/* 换行相关 */
 }
 
-/* 定义基本颜色 */
-.color {
-  color: #2abaca !important;
-}
 
 /* 清浮动 */
 .clear {

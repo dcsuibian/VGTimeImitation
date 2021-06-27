@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import BasicLayout from '@/layouts'
+import Test from '@/views/Test'
 
 Vue.use(VueRouter)
 
@@ -8,19 +9,21 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
-    redirect:'/topic/1126958', // 开发时临时使用
-  },
-  {
-    path: '/topic/:id',
-    name: 'TopicTemplate',
-    component: () => import(/* webpackChunkName: "topic-template" */'../views/topic/Template'),
-    props:route=>{
-      return {
-        id:Number(route.params.id),//交给组件之前就把id转成数字
+    component: Test,
+    // redirect:'/',
+    children:[
+      {
+        path: '/topic/:id',
+        name: 'TopicTemplate',
+        component: () => import(/* webpackChunkName: "topic-template" */'../views/topic/Template'),
+        props:route=>{
+          return {
+            id:Number(route.params.id),//交给组件之前就把id转成数字
+          }
+        }
       }
-    }
-  }
+    ]
+  },
 ]
 
 const router = new VueRouter({

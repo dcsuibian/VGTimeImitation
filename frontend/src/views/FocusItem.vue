@@ -2,21 +2,21 @@
   <div class="wrapper">
     <div class="img-box">
       <a href>
-        <img
-          :src="topic.cover"
-          alt="加载错误"
-        />
+        <img :src="topic.cover" alt="加载错误" />
       </a>
     </div>
     <div class="info-box">
+      <a href>
+        <h2>{{ topic.title }}</h2>
+      </a>
       <div class="fot-box">
         <div class="left">
-          <span class="author-name">{{topic.author.name}}</span>
+          <span class="author-name">{{ topic.author.name }}</span>
         </div>
         <div class="right">
           <span class="time-box">
             <i class="icon"></i>
-            {{topic.time}}
+            {{ topic.time }}
           </span>
         </div>
       </div>
@@ -27,19 +27,21 @@
 <script>
 export default {
   name: "FocusItem",
-  props:{
-      topic:{
-          type:Object,
-          default:()=>{
-              return {
-                  cover:'https://img01.vgtime.com/game/cover/2021/06/07/21060716315220_u229514.jpg',
-                  author:{
-                      name:'果其然'
-                  },
-                  time:'2021-06-27',
-              }
-          }
-      }
+  props: {
+    topic: {
+      type: Object,
+      default: () => {
+        return {
+          title: "VG本周玩家热点：重返PS商店后，夜之城变得更好了吗？",
+          cover:
+            "https://img01.vgtime.com/game/cover/2021/06/07/21060716315220_u229514.jpg",
+          author: {
+            name: "果其然",
+          },
+          time: "2021-06-27",
+        };
+      },
+    },
   },
   data() {
     return {};
@@ -59,9 +61,26 @@ export default {
   .info-box {
     position: absolute;
     padding: 10px;
+    left: 0;
     bottom: 0;
     width: 100%;
     box-sizing: border-box;
+    background: url("https://www.vgtime.com/resources/img/black_cover.png") left center repeat-x;
+    background-size: 100% 100%;
+    a {
+      text-decoration: none;
+      h2 {
+        color: #fff;
+        height: auto;
+        font-size: 18px;
+        line-height: 28px;
+        max-height: 56px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        overflow: hidden;
+        text-align: left;
+      }
+    }
     .fot-box {
       width: 100%;
       span {

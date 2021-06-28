@@ -4,9 +4,7 @@
       <Navbar></Navbar>
     </div>
     <div class="vg-main">
-      <section class="foc-box">
         <router-view/>
-      </section>
     </div>
   </div>
 </template>
@@ -41,10 +39,7 @@ export default {
     max-width: 1600px;
     margin: 0 auto;
     padding: 0 20px 50px 20px;
-    box-sizing: border-box;
-    .foc-box{
-      margin: 30px;
-    }
+    box-sizing: content-box;
   }
 }
 </style>

@@ -8,19 +8,21 @@
       </ul>
       <div class="clear"></div>
     </section>
-    <section class="game-news-box">
+    <!-- <section class="game-news-box">
       <div class="vg-tit">
         <h2>
           <a href>新闻资讯</a>
         </h2>
         <div class="clear"></div>
       </div>
-    </section>
+    </section> -->
+    <NormalSection></NormalSection>
   </div>
 </template>
 
 <script>
-import FocusItem from "./FocusItem";
+import FocusItem from "./FocusItem"
+import NormalSection from './NormalSection.vue'
 const focusNews = [
   {
     title: "打通《生化危机 村庄》后，我认为恐怖游戏不该迎合大众",
@@ -72,6 +74,7 @@ export default {
   name: "Home",
   components: {
     FocusItem,
+    NormalSection,
   },
   data() {
     return {
@@ -82,6 +85,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
+  height: 10000px;
   padding: 0 20px 50px 20px;
   section.foc-box {
     margin-top: 30px;

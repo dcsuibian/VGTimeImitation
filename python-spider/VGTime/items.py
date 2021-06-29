@@ -7,11 +7,21 @@ import scrapy
 from scrapy import Item, Field
 
 
+class User(scrapy.Item):
+    id = Field()
+    name = Field()
+    avatar = Field()
+    level = Field()
+    password = Field()
+
+
 class Topic(scrapy.Item):
     id = Field()
     title = Field()
     abstract = Field()
     content = Field()
-    editor_name = Field()
-    author_name = Field()
+    editor = Field()
+    author = Field()
     time = Field()
+
+

@@ -1,5 +1,6 @@
 import Mock from "mockjs";
 import { builder } from "../util";
+import topics from './HomePageTopics.json'
 
 Mock.mock(/\/topics\/(\d+)/, "get", (options) => {
   console.debug("接收到topic访问请求，options：", options);
@@ -22,3 +23,6 @@ Mock.mock(/\/topics\/(\d+)/, "get", (options) => {
     time:new Date('2021-06-23 14:43:41').getTime(),
   }, "成功取到topic数据", 200);
 });
+Mock.mock(/\/topics$/,'get',(options)=>{
+  return builder(topics,'给你所有topic',200)
+})

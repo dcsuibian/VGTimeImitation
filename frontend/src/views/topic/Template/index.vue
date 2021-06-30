@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import { getTopic } from "@/api/topic";
+import { getTopicById } from "@/api/topic";
 import VGHeader from '@/components/VGHeader'
 import moment from "moment";
 export default {
@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     fetchTopicData() {
-      return getTopic(this.id).then((res) => {
+      return getTopicById(this.id).then((res) => {
         console.debug("请求到的topic：", res.data);
         const topic = JSON.parse(JSON.stringify(res.data)); // 深拷贝
         this.topic = topic;

@@ -2,7 +2,7 @@
   <div class="home">
     <section class="foc-box">
       <ul>
-        <li v-for="item in focusNews" :key="item.cover">
+        <li v-for="item in focusNews" :key="item.id">
           <FocusItem :topic="item"></FocusItem>
         </li>
       </ul>
@@ -21,8 +21,9 @@
 </template>
 
 <script>
-import FocusItem from "./FocusItem"
-import NormalSection from './NormalSection.vue'
+import FocusItem from "./FocusItem";
+import NormalSection from "./NormalSection.vue";
+import { getAllTopics } from "@/api/topic";
 const focusNews = [
   {
     title: "打通《生化危机 村庄》后，我认为恐怖游戏不该迎合大众",
@@ -80,6 +81,25 @@ export default {
     return {
       focusNews,
     };
+  },
+  mounted() {
+    getAllTopics().then((res) => {
+      console.log("所有的topic：", res);
+      this.focusNews = res.data.slice(0,5).map(item => {
+        return Object.assign(
+          {
+            title: "打通《生化危机 村庄》后，我认为恐怖游戏不该迎合大众",
+            cover:
+              "https://img01.vgtime.com/game/cover/2021/06/07/21060716315220_u229514.jpg?x-oss-process=image/resize,m_pad,color_000000,w_800,h_500",
+            author: {
+              name: "果其然",
+            },
+            time: "",
+          },
+          item
+        );
+      });
+    });
   },
 };
 </script>

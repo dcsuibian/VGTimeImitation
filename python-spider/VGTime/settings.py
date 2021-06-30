@@ -16,6 +16,10 @@ NEWSPIDER_MODULE = 'VGTime.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Safari/537.36'
 
+
+LOG_LEVEL='INFO'
+
+
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
@@ -64,9 +68,10 @@ FEED_EXPORT_ENCODING = 'utf-8'
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'VGTime.pipelines.VgtimePipeline': 300,
-#}
+ITEM_PIPELINES = {
+   # 'VGTime.pipelines.VgtimePipeline': 300,
+   'VGTime.pipelines.MySQLPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

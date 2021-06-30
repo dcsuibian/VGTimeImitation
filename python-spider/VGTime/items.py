@@ -13,6 +13,7 @@ class User(scrapy.Item):
     avatar = Field()
     level = Field()
     password = Field()
+    # ['id','name','avatar','level','password']
 
 
 class Topic(scrapy.Item):
@@ -25,3 +26,5 @@ class Topic(scrapy.Item):
     time = Field()
 
 
+if __name__=='__main__':
+    print(dir(User()))

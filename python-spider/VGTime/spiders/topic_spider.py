@@ -14,19 +14,23 @@ class TopicSpider(scrapy.Spider):
     custom_settings = {'DOWNLOAD_DELAY': 0.2, 'CONCURRENT_REQUESTS_PER_IP': 4, }
 
     def start_requests(self):
+        self.__count = 0
         yield scrapy.Request('https://www.vgtime.com/',
                              callback=self.parse_home_page)
 
     def parse_home_page(self, response):
         hrefs = response.xpath('//a/@href').getall()
         for href in hrefs:
+
             if re.match(r'.*/topic/\d+\.jhtml', href):
                 url = response.urljoin(href)
                 self.logger.debug('一个topic：{0}'.format(url))
                 yield scrapy.Request(url, callback=self.parse)
 
     def parse(self, response):
-        count=0
+        if self.__count>10:
+            return
+        self.__count+=1
         topic = Topic()
         topic['id'] = int(response.xpath('//input[@id="topicId"]/@value').get())
         topic['title'] = response.xpath('//h1[@class="art_tit"]/text()').get()
@@ -44,35 +48,36 @@ class TopicSpider(scrapy.Spider):
             'div.editor_name span:first-child::text').get()
         editor['name'] = response.css(
             'div.editor_name span:nth-child(2)::text').get()
-        count+=1
-        self.logger.debug('yield a user topic {0}'%(count))
         yield scrapy.FormRequest(
             'https://www.vgtime.com/other/user.jhtml',
             formdata={'username': author['name']},
             callback=self.parse_author,
-            cb_kwargs={'topic':topic},
+            dont_filter=True,
+            cb_kwargs={'topic': topic},
         )
-    def __attach_user(self,response):
+
+    def __attach_user(self, response):
         json_response = json.loads(response.text)
         user = User()
-        user_info=json_response['data']['user_info']
+        user_info = json_response['data']['user_info']
         user['id'] = user_info['id']
         user['name'] = user_info['user_name']
         user['avatar'] = user_info['avatar_url']
         user['level'] = user_info['level']
         return user
 
-    def parse_author(self, response, topic):
+    def parse_author(self, response, topic=None):
         self.logger.debug('parse_author')
-        topic['author']=self.__attach_user(response)
-        return scrapy.FormRequest(
+        topic['author'] = self.__attach_user(response)
+
+        yield scrapy.FormRequest(
             'https://www.vgtime.com/other/user.jhtml',
             formdata={'username': topic['editor']['name']},
             callback=self.parse_editor,
+            dont_filter=True,
             cb_kwargs={'topic': topic},
         )
 
-    def parse_editor(self, response, topic):
-        self.logger.debug('parse_editor')
+    def parse_editor(self, response, topic=None):
         topic['editor'] = self.__attach_user(response)
         return topic

@@ -6,24 +6,30 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/api/topics")
 public class TopicController {
     @Autowired
     TopicRepository topicRepository;
     @GetMapping
-    @ResponseBody
-    public String findAll() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public Iterable<Topic> findAll() {
+//        PageRequest pageRequest= PageRequest.of(0,12, Sort.by("id") );
+//        Iterable<Topic> topics = topicRepository.findAll(pageRequest).getContent();
         Iterable<Topic> topics = topicRepository.findAll();
-        String s = objectMapper.writeValueAsString(topics);
-        return s;
+        return topics;
+    }
+    @GetMapping("/{id}")
+    public Topic findById(@PathVariable("id") Long id){
+        Optional<Topic> optionalTopic = topicRepository.findById(id);
+        return optionalTopic.isPresent()?optionalTopic.get():null;
     }
 }

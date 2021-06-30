@@ -18,12 +18,12 @@ class TopicSpider(scrapy.Spider):
         self.tqdm = None
         self.user_dict = {}
         # 请求首页上所有topic
-        # yield scrapy.Request('https://www.vgtime.com/',
-        #                      callback=self.parse_home_page)
+        yield scrapy.Request('https://www.vgtime.com/',
+                             callback=self.parse_home_page)
 
         # 请求sitemap上所有topic
-        yield scrapy.Request('http://www.vgtime.com/sitemap.txt',
-                             callback=self.parse_sitemap)
+        # yield scrapy.Request('http://www.vgtime.com/sitemap.txt',
+        #                      callback=self.parse_sitemap)
 
     def parse_sitemap(self, response):
         lines = response.text.split()

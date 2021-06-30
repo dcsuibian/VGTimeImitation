@@ -32,7 +32,8 @@ class BackendApplicationTests {
     void topicQuery(){
         Iterable<Topic> topics = topicRepository.findAll();
         for(var topic:topics){
-            System.out.println(topic);
+            System.out.println(topic.getAbstract());
+//            System.out.println(topic);
         }
     }
 

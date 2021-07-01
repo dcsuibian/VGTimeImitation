@@ -12,19 +12,24 @@ import java.util.Date;
 @Entity
 public class Topic {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
     private String title;
+
+    /*
+    注意，abstract为Java关键字，所以禁止使用。
+    貌似JPA不是通过setter设置此值的，所以还得保留resume。
+     */
     @Column(name="abstract")
     @Getter(AccessLevel.NONE)
-    private String resume;// 注意，abstract为Java关键字，所以禁止使用
+    @Setter(AccessLevel.NONE)
+    private String resume;//
+
 //    @Temporal(TemporalType.DATE)
 //    private Date time;
 
-    private void setResume(String resume){
-        this.resume=resume;
-    }
+    private String cover;
     @Column(name="abstract")
     public String getAbstract() {
         return resume;
@@ -36,7 +41,7 @@ public class Topic {
 
     @Override
     public String toString() {
-        return "Topic(id=" + this.getId() + ", content=" + this.getContent() + ", title=" + this.getTitle() + ", abstract=" + this.resume + ")";
+        return "Topic(id=" + this.getId() + ", content=" + this.getContent() + ", title=" + this.getTitle() + ", abstract=" + this.resume + ", cover=" + this.getCover()+")";
     }
 
 }

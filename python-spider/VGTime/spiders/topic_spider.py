@@ -6,60 +6,86 @@ import time
 from tqdm import tqdm
 
 
-
 class TopicSpider(scrapy.Spider):
     name = 'topics'
     allowed_domains = ['vgtime.com']
     start_urls = []
     custom_settings = {'DOWNLOAD_DELAY': 0.2, 'CONCURRENT_REQUESTS_PER_IP': 4, }
 
+    def __init__(self, source='rss', *args, **kwargs):
+        super(TopicSpider, self).__init__(*args, **kwargs)
+        # 目前从支持rss订阅、主页和sitemap三种来源寻找topic
+        if 'rss' == source:
+            pass
+        elif 'index' == source:
+            pass
+        elif 'sitemap' == source:
+            pass
+        else:
+            raise Exception('不支持的来源类型')
+        self.logger.info('topic的来源：' + source)
+        self.source = source
+
     def start_requests(self):
-        self.__cnt=0
+        self.__cnt = 0
         self.tqdm = None
         self.user_dict = {}
-        # 请求首页上所有topic
-        yield scrapy.Request('https://www.vgtime.com/',
-                             callback=self.parse_home_page)
 
-        # 请求sitemap上所有topic
-        # yield scrapy.Request('http://www.vgtime.com/sitemap.txt',
-        #                      callback=self.parse_sitemap)
+        source = self.source
+        if 'rss' == source:
+            yield scrapy.Request('https://www.vgtime.com/rss.jhtml',
+                                 callback=self.parse_rss)
+        elif 'index' == source:
+            # 请求首页上所有topic
+            yield scrapy.Request('https://www.vgtime.com/',
+                                 callback=self.parse_home_page)
+        elif 'sitemap' == source:
+            # 请求sitemap上所有topic
+            yield scrapy.Request('http://www.vgtime.com/sitemap.txt',
+                                 callback=self.parse_sitemap)
+
+    # 过滤URL，保证无论是rss、主页还是sitemap都只会使用topic的链接，避免forum之类的混入
+    def filter_urls(self, urls):
+        if urls is None:
+            return None
+        return filter(lambda url: bool(re.match(r'.*/topic/\d+\.jhtml', url)),
+                      urls)
+
+    def parse_rss(self, response):
+        # 使用针对RSS专有的库可能更好，但我偷懒了
+        urls = self.filter_urls(response.xpath('//item/link/text()').getall())
+        yield from map(lambda url: scrapy.Request(url, callback=self.parse),
+                       urls)
 
     def parse_sitemap(self, response):
-        lines = response.text.split()
-        cnt=0
-        for line in lines:
-            if re.match(r'.*/topic/\d+\.jhtml', line):
-                cnt+=1
-                self.logger.info('一个topic：{0}'.format(line))
-                yield scrapy.Request(line, callback=self.parse)
-        self.tqdm=tqdm(total=cnt)
+        urls = self.filter_urls(response.text.split())
+        yield from map(lambda url: scrapy.Request(url, callback=self.parse),
+                       urls)
 
     def parse_home_page(self, response):
         hrefs = response.xpath('//a/@href').getall()
-        cnt = 0
-        for href in hrefs:
-            if re.match(r'.*/topic/\d+\.jhtml', href):
-                cnt+=1
-                url = response.urljoin(href)
-                self.logger.info('一个topic：{0}'.format(url))
-                yield scrapy.Request(url, callback=self.parse)
-        self.tqdm=tqdm(total=cnt)
+        urls = map(lambda href: response.urljoin(href), hrefs)
+        urls = self.filter_urls(urls)
+        yield from map(lambda url: scrapy.Request(url, callback=self.parse),
+                       urls)
 
     def parse(self, response):
-        self.__cnt +=1
-        if self.tqdm:
-            self.tqdm.update(self.__cnt)
+        self.logger.info('解析topic:'+response.url)
+
         topic = Topic()
         topic['id'] = int(response.xpath('//input[@id="topicId"]/@value').get())
         topic['title'] = response.xpath('//h1[@class="art_tit"]/text()').get()
-        topic['abstract'] = response.xpath(
-            '//div[@class="abstract"]/p/text()').get()
+        topic['abstract'] = response.xpath('//div[@class="abstract"]/p/text()').get()
         topic['content'] = response.css('.topicContent').get()
+        topic['cover']=response.xpath('//input[@id="wxshare_imageurl"]/@value').get()
+
+        # 日期字符串转时间戳
         time_string = response.css(
             'div.editor_name span.time_box::text').get().strip()
         time_array = time.strptime(time_string, '%Y-%m-%d %H:%M:%S')
         topic['time'] = int(time.mktime(time_array)) * 1000
+
+
         author = topic['author'] = User()
         editor = topic['editor'] = User()
         author['name'] = response.css(
@@ -67,7 +93,7 @@ class TopicSpider(scrapy.Spider):
         editor['name'] = response.css(
             'div.editor_name span:nth-child(2)::text').get()
         if (not author['name']) or not (editor['name']):
-            self.logger.info('topic {0} 缺少作者或编辑'.format(topic['id']))
+            self.logger.info('topic {0} 缺少作者或编辑，不采用'.format(topic['id']))
             return None
         if self.user_dict.get(author['name']):  # 如果作者存在
             topic['author'] = self.user_dict[author['name']]

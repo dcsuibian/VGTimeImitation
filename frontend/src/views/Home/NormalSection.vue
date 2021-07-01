@@ -2,31 +2,31 @@
   <div class="wrapper">
     <div class="vg-tit">
       <h2>
-        <a href title="攻略资料">攻略资料</a>
+        <a href :title="title">{{title}}</a>
       </h2>
       <div class="clear"></div>
     </div>
     <ul class="vg-list">
       <li v-for="topic in topics" :key="topic.id">
         <div class="img-box">
-          <a target="_blank" href title="《瑞奇与叮当 时空跳转》全克莱歌熊位置">
+          <a target="_blank" href :title="topic.title">
             <img
-              src="https://img01.vgtime.com/game/cover/2021/06/02/21060216013458_u2505.jpg?x-oss-process=image/resize,m_pad,color_000000,w_640,h_400"
-              alt="《瑞奇与叮当 时空跳转》全克莱歌熊位置"
+              :src="topic.cover"
+              :alt="topic.title"
             />
           </a>
         </div>
         <div class="info-box">
-          <a target="_blank" href title="《瑞奇与叮当 时空跳转》全克莱歌熊位置"
-            ><h2>《瑞奇与叮当 时空跳转》全克莱歌熊位置</h2></a
+          <a target="_blank" href :title="topic.title"
+            ><h2>{{topic.title}}</h2></a
           >
-          <p>一共九个。</p>
+          <p>{{topic.abstract}}</p>
           <div class="fot-box">
             <div class="left">
-              <span class="user_name">沁雅畅慧</span>
+              <span class="user_name">{{''}}</span>
             </div>
             <div class="right">
-              <span class="time-box"><i class="icon"></i>2021-06-10</span>
+              <span class="time-box"><i class="icon"></i>{{timeStampToString(topic.time)}}</span>
             </div>
           </div>
         </div>
@@ -37,8 +37,13 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   props: {
+    title:{
+      type:String,
+      default:'攻略资料',
+    },
     topics:{
       type:Array,
       default(){
@@ -56,8 +61,13 @@ export default {
         }
         return res
       }
-    }
+    },
   },
+  methods:{
+    timeStampToString(time){
+      return moment(time).format('YYYY-MM-DD')
+    }
+  }
 };
 </script>
 

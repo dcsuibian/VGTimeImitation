@@ -1,3 +1,5 @@
+# TODO 删除这个文件，不在python里访问数据库
+
 from VGTime.items import User, Topic
 import pymysql
 
@@ -54,7 +56,7 @@ class TopicRepository(object):
         return self.__result_to_topic(result)
 
     def save(self, topic):
-        sql = "INSERT INTO `topic`(`id`,`title`,`abstract`,`time`,`content`,`author_id`,`editor_id`) VALUES(%s,%s,%s,%s,%s,%s,%s)"
+        sql = "INSERT INTO `topic`(`id`,`title`,`abstract`,`time`,`content`,`author_id`,`editor_id`,`cover`) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
         self.cursor.execute(sql,
             (topic['id'],
              topic['title'],
@@ -62,7 +64,8 @@ class TopicRepository(object):
              topic['time'],
              topic['content'],
              topic['author']['id'],
-             topic['editor']['id'],),
+             topic['editor']['id'],
+             topic['cover'],),
         )
         return None
 

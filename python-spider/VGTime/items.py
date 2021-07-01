@@ -24,6 +24,7 @@ class Topic(scrapy.Item):
     editor = Field()
     author = Field()
     time = Field()
+    cover = Field()
 
 
 if __name__=='__main__':

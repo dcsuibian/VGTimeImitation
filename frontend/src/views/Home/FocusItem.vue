@@ -16,7 +16,7 @@
         <div class="right">
           <span class="time-box">
             <i class="icon"></i>
-            {{ topic.time }}
+            {{ timeString }}
           </span>
         </div>
       </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   name: "FocusItem",
   props: {
@@ -38,7 +39,7 @@ export default {
           author: {
             name: "果其然",
           },
-          time: "2021-06-27",
+          time: 0,
         };
       },
     },
@@ -46,6 +47,11 @@ export default {
   data() {
     return {};
   },
+  computed:{
+    timeString(){
+      return moment(this.time).format('YYYY-MM-DD')
+    }
+  }
 };
 </script>
 

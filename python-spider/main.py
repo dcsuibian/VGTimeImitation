@@ -2,5 +2,4 @@
 from scrapy import cmdline
 
 if __name__ == '__main__':
-    # cmdline.execute('scrapy crawl topics -O out/topics.jsonlines'.split())
-    cmdline.execute('scrapy crawl topics -O out/HomePageTopics.json'.split())
+    cmdline.execute('scrapy crawl topics -O out/topics.json -a source=index'.split())

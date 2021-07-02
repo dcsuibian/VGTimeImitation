@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="img-box">
-      <a href>
+      <a :href="'/topic/'+topic.id">
         <img :src="topic.cover" alt="加载错误" />
       </a>
     </div>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <VGHeader></VGHeader>
     <div class="vg-main">
       <div class="main-center">
         <article>
@@ -73,9 +72,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.clear {
-  clear: both;
-}
 .color {
   color: #2abaca !important;
 }
@@ -103,17 +99,36 @@ export default {
     text-align: left;
   }
 }
-article {
+article::v-deep {
   font-size: 16px;
   line-height: 20px;
   color: #2b2b2b;
   float: left;
   width: 100%;
-  p {
+  text-align: left;
+  p  {
     font-size: 16px;
     line-height: 28px;
     background: 0;
     color: rgba(38, 38, 38, 0.9);
+
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    word-break: break-all;
+
+    white-space: normal;
+  }
+  h4{
+    position: relative;
+    font-size: 30px;
+    line-height: 50px;
+    margin: 30px 0;
+    padding-left: 20px;
+    border-left: 6px solid #000;
+    font-weight: bold;
   }
   .time-box .icon {
     position: relative;
@@ -158,6 +173,7 @@ article {
   cursor: pointer;
 }
 .front-content {
+  letter-spacing: 1.3px;
   p {
     margin: 10px 0;
   }

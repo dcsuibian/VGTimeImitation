@@ -11,7 +11,7 @@ Mock.mock(/\/topics\/(\d+)/, "get", (options) => {
   console.debug("接收到topic访问请求，options：", options);
   const id=Number(options.url.match(/\/topics\/(\d+)/)[1])
   console.debug('查询topic的ID:',id)
-  return builder(findById(id), "topic数据", 200);
+  return builder(findTopicById(id), "topic数据", 200);
 });
 Mock.mock(/\/topics$/,'get',(options)=>{
   return builder(topics,'给你所有topic',200)

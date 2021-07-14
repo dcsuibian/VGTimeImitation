@@ -9,7 +9,7 @@
     <ul class="vg-list">
       <li v-for="topic in topics" :key="topic.id">
         <div class="img-box">
-          <a target="_blank" href :title="topic.title">
+          <a target="_blank" :href="'/topic/'+topic.id" :title="topic.title">
             <img
               :src="topic.cover"
               :alt="topic.title"
@@ -17,7 +17,7 @@
           </a>
         </div>
         <div class="info-box">
-          <a target="_blank" href :title="topic.title"
+          <a target="_blank" :href="'/topic/'+topic.id" :title="topic.title"
             ><h2>{{topic.title}}</h2></a
           >
           <p>{{topic.abstract}}</p>

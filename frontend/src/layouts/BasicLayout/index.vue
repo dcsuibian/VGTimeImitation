@@ -46,13 +46,6 @@ export default {
     padding: 0 20px 50px 20px;
     box-sizing: content-box;
   }
-  .user-nav{
-    background-color: red;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 50px;
-    top: 81px;
-  }
+  
 }
 </style>

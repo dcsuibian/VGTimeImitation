@@ -18,6 +18,7 @@
             <p>{{ topic.abstract }}</p>
           </div>
           <div class="topic-content front-content" v-html="topic.content"></div>
+          <EditorBox>hh</EditorBox>
         </article>
       </div>
       <div class="clear"></div>
@@ -28,6 +29,7 @@
 import { getTopicById } from "@/api/topic";
 import VGHeader from '@/components/VGHeader'
 import moment from "moment";
+import EditorBox from './EditorBox.vue'
 export default {
   name: "Template",
   props: {
@@ -38,6 +40,7 @@ export default {
   },
   components:{
     VGHeader,
+    EditorBox,
   },
   data() {
     return {
@@ -106,6 +109,9 @@ article::v-deep {
   float: left;
   width: 100%;
   text-align: left;
+  figure{
+    text-align: center;
+  }
   p  {
     font-size: 16px;
     line-height: 28px;

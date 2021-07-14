@@ -6,7 +6,7 @@
       </a>
     </div>
     <div class="info-box">
-      <a href>
+      <a :href="'/topic/'+topic.id">
         <h2>{{ topic.title }}</h2>
       </a>
       <div class="fot-box">

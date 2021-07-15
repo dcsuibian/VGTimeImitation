@@ -10,10 +10,13 @@ from scrapy import Item, Field
 class User(scrapy.Item):
     id = Field()
     name = Field()
+    password = Field()
+    gender = Field()
     avatar = Field()
     level = Field()
-    password = Field()
-    # ['id','name','avatar','level','password']
+    title = Field()
+    phone_number = Field()
+    email = Field()
 
 
 class Topic(scrapy.Item):
@@ -27,5 +30,5 @@ class Topic(scrapy.Item):
     cover = Field()
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     print(dir(User()))

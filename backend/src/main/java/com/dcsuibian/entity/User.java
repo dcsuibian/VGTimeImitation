@@ -15,11 +15,10 @@ public class User {
     private Long id;
     private String name;
     private String password;
-    private String role;
-    private String phoneNumber;
-    private String profilePicture;
-    private String email;
     private String gender;
-    private String realName;
-    private String identityCard;
+    private String avatar;
+    private Integer level;
+    private String title; // 称号，或者叫头衔吧
+    private String phoneNumber;
+    private String email;
 }

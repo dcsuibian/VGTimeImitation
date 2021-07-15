@@ -24,6 +24,7 @@ class TopicSpider(scrapy.Spider):
         else:
             raise Exception('不支持的来源类型')
         self.logger.info('topic的来源：' + source)
+        self.logger.info('topic的来源：' + source)
         self.source = source
 
     def start_requests(self):

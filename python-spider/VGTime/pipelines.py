@@ -4,6 +4,8 @@
 from itemadapter import ItemAdapter
 
 import pymysql
+
+from VGTime.items import Game, Topic
 from repository import UserRepository,TopicRepository
 import logging
 
@@ -25,19 +27,24 @@ class MySQLPipeline(object):
         self.topic_repository=TopicRepository(self.cursor)
 
     def process_item(self, item, spider):
-        for user in (item['author'], item['editor']):
+        if isinstance(item,Topic):
+            for user in (item['author'], item['editor']):
+                try:
+                    self.user_repository.save(user)
+                    self.logger.info('插入user {0}成功'.format(user['id']))
+                except Exception as err:  # 应该是用户已存在
+                    self.logger.debug('插入user时出现异常：', err)
             try:
-                self.user_repository.save(user)
-                self.logger.info('插入user {0}成功'.format(user['id']))
-            except Exception as err:  # 应该是用户已存在
-                self.logger.debug('插入user时出现异常：', err)
-        try:
-            topic = item
-            self.topic_repository.save(topic)
-            self.logger.info('插入topic {0}成功'.format(topic['id']))
-        except Exception as err:  # 应该是topic已存在
-            self.logger.debug('插入topic时出现异常：', err)
-        return item
+                topic = item
+                self.topic_repository.save(topic)
+                self.logger.info('插入topic {0}成功'.format(topic['id']))
+            except Exception as err:  # 应该是topic已存在
+                self.logger.debug('插入topic时出现异常：', err)
+            return item
+        elif isinstance(item,Game):
+            return item
+        else:
+            return item
 
     def close_spider(self, spider):
         # 关闭游标和连接

@@ -29,6 +29,22 @@ class Topic(scrapy.Item):
     time = Field()
     cover = Field()
 
+class Game(scrapy.Item):
+    id=Field()
+    name=Field()
+    genes=Field()
+    tags=Field()
+    developer=Field()
+    publisher=Field()
+    introduction=Field()
+    editor_comment=Field()
+    rate=Field()
+    albums=Field()
+
+class Album(scrapy.Item):
+    id=Field()
+    title=Field()
+    pictures=Field()
 
 if __name__ == '__main__':
     print(dir(User()))

@@ -20,6 +20,10 @@ public class Topic {
     private String content;
     private String title;
     private String cover;
+    @ManyToOne(targetEntity = User.class)
+    private User author;
+    @ManyToOne(targetEntity = User.class)
+    private User editor;
     /*
     注意，abstract为Java关键字，所以禁止使用。
     貌似JPA不是通过setter设置此值的，所以还得保留resume。

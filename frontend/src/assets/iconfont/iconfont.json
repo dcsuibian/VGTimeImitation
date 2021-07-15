@@ -1,0 +1,44 @@
+{
+  "id": "2676290",
+  "name": "VGTimeImitation",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "VGTime模仿项目，详情请见：https://github.com/dcsuibian/VGTimeImitation",
+  "glyphs": [
+    {
+      "icon_id": "1206331",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "1244207",
+      "name": "知乎",
+      "font_class": "zhihu",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "15167554",
+      "name": "download",
+      "font_class": "download",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "18442445",
+      "name": "book",
+      "font_class": "book",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "19446125",
+      "name": "微博",
+      "font_class": "weibo",
+      "unicode": "ea8c",
+      "unicode_decimal": 60044
+    }
+  ]
+}

@@ -9,7 +9,6 @@ const routes = [
   {
     path: '/',
     component: BasicLayout,
-    // redirect:'/test',
     children:[
       {
         path:'/',
@@ -17,12 +16,10 @@ const routes = [
       },
       {
         path: '/test',
-        // name:'Test',
         component: ()=>import('../views/Test'),
       },
       {
         path: '/topic/:id',
-        // name:'TopicTemplate',
         component: () => import('../views/topic/Template'),
         props:route=>{
           return {

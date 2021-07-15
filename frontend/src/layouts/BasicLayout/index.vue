@@ -1,25 +1,25 @@
 <template>
-  <div class="main-body">
+  <div class="basic-layout">
     <div class="header">
-      <Navbar></Navbar>
+      <VGHeader></VGHeader>
     </div>
-    <div class="vg-main">
+    <div class="content">
         <router-view/>
     </div>
     <UserNav class="user-nav">
-
     </UserNav>
   </div>
 </template>
 
 <script>
+import VGHeader from '@/components/VGHeader'
 import Navbar from "./Navbar";
 import UserNav from './UserNav.vue';
 
 export default {
   name: "BasicLayout",
   components: {
-    Navbar,
+    VGHeader,
     UserNav,
   },
   data() {
@@ -30,16 +30,15 @@ export default {
 
 
 <style lang="scss" scoped>
-.main-body {
+.basic-layout {
+  box-sizing: border-box;
   padding-left: 50px;
   width: 100%;
-  box-sizing: border-box;
   .header {
-    width: 100%;
-    max-width: 1600px;
+    width: 1600px;
     margin: 0 auto;
   }
-  .vg-main {
+  .content {
     width: 100%;
     max-width: 1600px;
     margin: 0 auto;

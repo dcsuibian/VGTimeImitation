@@ -7,6 +7,7 @@ import store from './store'
 // WARNING: `mockjs` NOT SUPPORT `IE` PLEASE DO NOT USE IN `production` ENV.
 import './mock'
 import './global.css'
+import '@/assets/iconfont/iconfont.css'
 
 
 Vue.config.productionTip = false

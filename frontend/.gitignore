@@ -21,3 +21,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+
+# 去掉阿里图标库的示例文件
+src/assets/iconfont/demo*

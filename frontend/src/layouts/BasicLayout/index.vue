@@ -13,7 +13,6 @@
 
 <script>
 import VGHeader from '@/components/VGHeader'
-import Navbar from "./Navbar";
 import UserNav from './UserNav.vue';
 
 export default {
@@ -36,6 +35,7 @@ export default {
   width: 100%;
   .header {
     width: 1600px;
+    height: 81px;
     margin: 0 auto;
   }
   .content {

@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       scrollTop: 0,
+      scrollEventListener:null,
     };
   },
   computed: {
@@ -45,10 +46,14 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener("scroll", () => {
+    this.scrollEventListener=window.addEventListener("scroll", () => {
       this.scrollTop = document.documentElement.scrollTop;
     });
   },
+  beforeDestroy(){
+    window.removeEventListener('scroll',this.scrollEventListener)
+    console.debug('VGHeader的窗口滚动监听器已注销')
+  }
 };
 </script>
 

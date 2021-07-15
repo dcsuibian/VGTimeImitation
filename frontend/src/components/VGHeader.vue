@@ -1,6 +1,6 @@
 <template>
   <div class="vg-header" :class="{ fixed: needFixed }">
-    <div class="logo left">
+    <div class="logo left" :class="{ logoUnvisible: logoHidden }">
       <a href></a>
     </div>
     <div class="message">
@@ -37,23 +37,31 @@ export default {
   data() {
     return {
       scrollTop: 0,
-      scrollEventListener:null,
+      scrollEventListener: null,
     };
   },
   computed: {
     needFixed() {
       return this.scrollTop >= 32;
     },
+    logoHidden() {
+      // 跟VGTime首页的logo保持一致，可能没有什么必要
+      if (this.needFixed) {
+        return false;
+      } else {
+        return this.$route.name === "Home";
+      }
+    },
   },
   mounted() {
-    this.scrollEventListener=window.addEventListener("scroll", () => {
+    this.scrollEventListener = window.addEventListener("scroll", () => {
       this.scrollTop = document.documentElement.scrollTop;
     });
   },
-  beforeDestroy(){
-    window.removeEventListener('scroll',this.scrollEventListener)
-    console.debug('VGHeader的窗口滚动监听器已注销')
-  }
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.scrollEventListener);
+    console.debug("VGHeader的窗口滚动监听器已注销");
+  },
 };
 </script>
 
@@ -131,7 +139,7 @@ export default {
           text-align: center;
           color: #aab2bd;
           font-size: 14px;
-          border-right: 1px solid rgba(85,85,85,0.05);
+          border-right: 1px solid rgba(85, 85, 85, 0.05);
         }
         a.active {
           font-weight: bold;
@@ -141,15 +149,20 @@ export default {
     }
   }
 }
-.vg-header.fixed{
+.vg-header.fixed {
   position: fixed;
   top: 0;
   width: 1600px;
   height: 48px;
   z-index: 10;
-  .message{
+  .message {
     display: none;
   }
-
+}
+.logo.logoUnvisible {
+  background: transparent;
+  a {
+    background: transparent;
+  }
 }
 </style>

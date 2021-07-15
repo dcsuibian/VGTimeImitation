@@ -1,11 +1,11 @@
 <template>
-  <div class="wrapper">
+  <div class="focus-item">
     <div class="img-box">
-      <a :href="'/topic/'+topic.id">
+      <a target="_blank" :href="'/topic/' + topic.id">
         <img :src="topic.cover" alt="加载错误" />
       </a>
     </div>
-    <div class="info-box">
+    <!-- <div class="info-box">
       <a :href="'/topic/'+topic.id">
         <h2>{{ topic.title }}</h2>
       </a>
@@ -20,48 +20,46 @@
           </span>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import moment from 'moment'
+import moment from "moment";
 export default {
   name: "FocusItem",
   props: {
     topic: {
       type: Object,
-      default: () => {
-        return {
-          title: "VG本周玩家热点：重返PS商店后，夜之城变得更好了吗？",
-          cover:
-            "https://img01.vgtime.com/game/cover/2021/06/07/21060716315220_u229514.jpg",
-          author: {
-            name: "果其然",
-          },
-          time: 0,
-        };
-      },
+      required: true,
     },
   },
   data() {
     return {};
   },
-  computed:{
-    timeString(){
-      return moment(this.time).format('YYYY-MM-DD')
-    }
-  }
+  computed: {
+    timeString() {
+      return moment(this.time).format("YYYY-MM-DD");
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
+.focus-item {
+  width:100%;
+  height: 100%;
   .img-box {
     width: 100%;
-    img {
+    height: 100%;
+    a {
+      display: inline-block;
       width: 100%;
       height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   .info-box {
@@ -71,7 +69,8 @@ export default {
     bottom: 0;
     width: 100%;
     box-sizing: border-box;
-    background: url("https://www.vgtime.com/resources/img/black_cover.png") left center repeat-x;
+    background: url("https://www.vgtime.com/resources/img/black_cover.png") left
+      center repeat-x;
     background-size: 100% 100%;
     a {
       text-decoration: none;

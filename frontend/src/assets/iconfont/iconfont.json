@@ -6,6 +6,13 @@
   "description": "VGTime模仿项目，详情请见：https://github.com/dcsuibian/VGTimeImitation",
   "glyphs": [
     {
+      "icon_id": "21513684",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e6cf",
+      "unicode_decimal": 59087
+    },
+    {
       "icon_id": "1206331",
       "name": "微信",
       "font_class": "weixin",

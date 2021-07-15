@@ -13,7 +13,7 @@
 
 <script>
 import VGHeader from '@/components/VGHeader'
-import UserNav from './UserNav.vue';
+import UserNav from '../../components/UserNav.vue';
 
 export default {
   name: "BasicLayout",
@@ -39,11 +39,10 @@ export default {
     margin: 0 auto;
   }
   .content {
-    width: 100%;
-    max-width: 1600px;
+    width: 1600px;
     margin: 0 auto;
     padding: 0 20px 50px 20px;
-    box-sizing: content-box;
+    box-sizing: border-box;
   }
   
 }

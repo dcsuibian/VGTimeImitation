@@ -3,7 +3,6 @@ import scrapy
 import re
 from ..items import Topic, User
 import time
-from tqdm import tqdm
 
 
 class TopicSpider(scrapy.Spider):
@@ -24,13 +23,9 @@ class TopicSpider(scrapy.Spider):
         else:
             raise Exception('不支持的来源类型')
         self.logger.info('topic的来源：' + source)
-        self.logger.info('topic的来源：' + source)
         self.source = source
 
     def start_requests(self):
-        self.__cnt = 0
-        self.tqdm = None
-        self.user_dict = {}
 
         source = self.source
         if 'rss' == source:
@@ -42,7 +37,7 @@ class TopicSpider(scrapy.Spider):
                                  callback=self.parse_home_page)
         elif 'sitemap' == source:
             # 请求sitemap上所有topic
-            yield scrapy.Request('http://www.vgtime.com/sitemap.txt',
+            yield scrapy.Request('https://www.vgtime.com/sitemap.txt',
                                  callback=self.parse_sitemap)
 
     # 过滤URL，保证无论是rss、主页还是sitemap都只会使用topic的链接，避免forum之类的混入
@@ -71,21 +66,22 @@ class TopicSpider(scrapy.Spider):
                        urls)
 
     def parse(self, response):
-        self.logger.info('解析topic:'+response.url)
+        self.logger.info('解析topic:' + response.url)
 
         topic = Topic()
         topic['id'] = int(response.xpath('//input[@id="topicId"]/@value').get())
         topic['title'] = response.xpath('//h1[@class="art_tit"]/text()').get()
-        topic['abstract'] = response.xpath('//div[@class="abstract"]/p/text()').get()
+        topic['abstract'] = response.xpath(
+            '//div[@class="abstract"]/p/text()').get()
         topic['content'] = response.css('.topicContent').get()
-        topic['cover']=response.xpath('//input[@id="wxshare_imageurl"]/@value').get()
+        topic['cover'] = response.xpath(
+            '//input[@id="wxshare_imageurl"]/@value').get()
 
         # 日期字符串转时间戳
         time_string = response.css(
             'div.editor_name span.time_box::text').get().strip()
         time_array = time.strptime(time_string, '%Y-%m-%d %H:%M:%S')
         topic['time'] = int(time.mktime(time_array)) * 1000
-
 
         author = topic['author'] = User()
         editor = topic['editor'] = User()

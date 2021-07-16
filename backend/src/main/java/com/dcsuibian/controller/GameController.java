@@ -1,6 +1,8 @@
 package com.dcsuibian.controller;
 
+import com.dcsuibian.entity.Album;
 import com.dcsuibian.entity.Game;
+import com.dcsuibian.repository.AlbumRepository;
 import com.dcsuibian.repository.GameRepository;
 import com.dcsuibian.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,13 @@ import static com.dcsuibian.controller.Util.builder;
 @RequestMapping("/api/games")
 public class GameController {
     private GameRepository gameRepository;
+    private AlbumRepository albumRepository;
+    private AlbumController albumController;
 
-    public GameController(@Autowired GameRepository gameRepository) {
+    public GameController(@Autowired GameRepository gameRepository,@Autowired AlbumRepository albumRepository,@Autowired AlbumController albumController) {
         this.gameRepository=gameRepository;
+        this.albumRepository=albumRepository;
+        this.albumController=albumController;
     }
 
     @GetMapping
@@ -36,7 +42,21 @@ public class GameController {
     }
     @PostMapping
     public ResponseWrapper save(@RequestBody Game game){
+        for(var album:game.getAlbums()){
+            albumRepository.save(album);
+        }
         game = gameRepository.save(game);
         return builder(game,"新增了一个game",201);
+    }
+
+    @GetMapping("/{id}/albums")
+    public ResponseWrapper findAlbumsByGameId(@PathVariable("id") Long id) {
+        Iterable<Album> albums = albumRepository.findAllByGameId(id);
+        return builder(albums,"给你此游戏的所有album",200);
+    }
+
+    @GetMapping("/{id}/albums/{albumId}")
+    public ResponseWrapper findById(@PathVariable("id") Long id,@PathVariable("albumId") Long albumId) {
+        return albumController.findById(albumId);
     }
 }

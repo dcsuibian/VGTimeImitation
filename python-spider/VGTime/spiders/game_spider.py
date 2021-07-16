@@ -8,6 +8,7 @@ class GameSpider(scrapy.Spider):
     name = 'games'
     allowed_domains = ['vgtime.com']
     start_urls = []
+    custom_settings = {'DOWNLOAD_DELAY': 0.2, 'CONCURRENT_REQUESTS_PER_IP': 4, }
 
     def start_requests(self):
         for i in range(1, 10):

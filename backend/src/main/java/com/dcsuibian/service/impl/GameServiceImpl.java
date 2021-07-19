@@ -14,17 +14,6 @@ import java.util.Optional;
 
 @Service
 public class GameServiceImpl implements GameService {
-    @Override
-    public Game save(Game game) {
-        List<Album> albums = new ArrayList<>();
-        for(Album album:game.getAlbums()) {
-            album=albumService.save(album);
-
-        }
-        game = gameRepository.save(game);
-        game.setAlbums(albums);
-        return game;
-    }
 
     private GameRepository gameRepository;
     private AlbumService albumService;

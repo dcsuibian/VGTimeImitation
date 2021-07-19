@@ -51,7 +51,7 @@ public class GameController {
 
     @GetMapping("/{id}/albums")
     public ResponseWrapper findAlbumsByGameId(@PathVariable("id") Long id) {
-        Iterable<Album> albums = albumRepository.findAllByGameId(id);
+        Iterable<Album> albums = albumRepository.getAllByGameId(id);
         return builder(albums,"给你此游戏的所有album",200);
     }
 

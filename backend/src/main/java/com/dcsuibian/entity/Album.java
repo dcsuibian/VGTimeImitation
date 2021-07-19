@@ -24,7 +24,6 @@ public class Album {
         this.__pictures=Util.listToString(pictures);
     }
 
-    @Transient
     @ManyToOne(targetEntity = Game.class)
     private Game game;
 }

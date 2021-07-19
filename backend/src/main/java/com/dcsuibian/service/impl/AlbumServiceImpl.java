@@ -10,14 +10,10 @@ import java.util.Optional;
 
 @Service
 public class AlbumServiceImpl implements AlbumService {
-    @Override
-    public Album save(Album album) {
-        return albumRepository.save(album);
-    }
 
     @Override
     public Iterable<Album> getAllByGameId(long gameId) {
-        return albumRepository.findAllByGameId(gameId);
+        return albumRepository.getAllByGameId(gameId);
     }
 
     private AlbumRepository albumRepository;

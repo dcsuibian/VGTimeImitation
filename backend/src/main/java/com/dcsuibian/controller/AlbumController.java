@@ -2,6 +2,7 @@ package com.dcsuibian.controller;
 
 import com.dcsuibian.entity.Album;
 import com.dcsuibian.repository.AlbumRepository;
+import com.dcsuibian.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,19 +16,16 @@ import static com.dcsuibian.controller.Util.builder;
 @RestController
 @RequestMapping("/api/albums")
 public class AlbumController {
-    private AlbumRepository albumRepository;
+    private AlbumService albumService;
 
-    public AlbumController(@Autowired AlbumRepository albumRepository) {
-        this.albumRepository = albumRepository;
+    @Autowired
+    public AlbumController(AlbumService albumService) {
+        this.albumService = albumService;
     }
 
     @GetMapping("/{id}")
     public ResponseWrapper findById(@PathVariable("id") Long id) {
-        Optional<Album> albumOptional = albumRepository.findById(id);
-        if (albumOptional.isPresent()) {
-            return builder(albumOptional.get(), "给你这个album", 200);
-        } else {
-            return builder(null, "不存在这个album", 404);
-        }
+        Album album = albumService.getById(id);
+        return null!=album?builder(album, "给你这个album", 200):builder(null, "不存在这个album", 404);
     }
 }

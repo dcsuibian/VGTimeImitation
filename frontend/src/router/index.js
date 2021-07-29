@@ -21,10 +21,19 @@ const routes = [
       },
       {
         path: '/topic/:id',
-        component: () => import('../views/topic/Template'),
+        component: () => import('../views/Topic/Template'),
         props:route=>{
           return {
             id:Number(route.params.id),//交给组件之前就把id转成数字
+          }
+        }
+      },
+      {
+        path:'/album/:id',
+        component:()=>import('../views/Album/Template'),
+        props:route=>{
+          return {
+            id:Number(route.params.id),
           }
         }
       }

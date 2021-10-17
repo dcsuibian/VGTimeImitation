@@ -1,6 +1,7 @@
 package com.dcsuibian.controller;
+
 import com.dcsuibian.entity.User;
-import com.dcsuibian.repository.UserRepository;
+import com.dcsuibian.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,29 +14,26 @@ import static com.dcsuibian.controller.Util.builder;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-    private UserRepository userRepository;
+    private UserService service;
 
-    public UserController(@Autowired UserRepository userRepository) {
-        this.userRepository = userRepository;
+    @Autowired
+    public UserController(UserService service) {
+        this.service = service;
     }
+
     @GetMapping
-    public ResponseWrapper findAll() {
-        Iterable<User> users = userRepository.findAll();
+    public ResponseWrapper<Iterable<User>> getAll() {
+        Iterable<User> users = service.getAll();
         return builder(users, "给你所有user", 200);
     }
 
     @GetMapping("/{id}")
-    public ResponseWrapper findById(@PathVariable("id") Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            return builder(optionalUser.get(), "给你这个user", 200);
+    public ResponseWrapper<User> getById(@PathVariable("id") long id) {
+        User user = service.getById(id);
+        if (null != user) {
+            return builder(user, "给你这个user", 200);
         } else {
             return builder(null, "不存在这个user", 404);
         }
-    }
-    @PostMapping
-    public ResponseWrapper save(@RequestBody User user){
-        user = userRepository.save(user);
-        return builder(user,"新增了一个user",201);
     }
 }

@@ -1,4 +1,4 @@
-package com.dcsuibian.entity;
+package com.dcsuibian.entity.po;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +20,9 @@ class Util {
         return result;
     }
     static List<String> stringToList(String s){
+        if(null==s){
+            return null;
+        }
         return new ArrayList<>(Arrays.asList(s.split("\\|")));
     }
 }

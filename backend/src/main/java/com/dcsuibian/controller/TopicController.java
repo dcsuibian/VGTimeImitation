@@ -1,7 +1,7 @@
 package com.dcsuibian.controller;
 
 import com.dcsuibian.entity.Topic;
-import com.dcsuibian.repository.TopicRepository;
+import com.dcsuibian.service.TopicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,30 +14,32 @@ import static com.dcsuibian.controller.Util.builder;
 @RestController
 @RequestMapping("/api/topics")
 public class TopicController {
-    private TopicRepository topicRepository;
+    private TopicService service;
 
-    public TopicController(@Autowired TopicRepository topicRepository) {
-        this.topicRepository = topicRepository;
+    @Autowired
+    public TopicController(TopicService service) {
+        this.service = service;
     }
 
     @GetMapping
-    public ResponseWrapper findAll() {
-        Iterable<Topic> topics = topicRepository.findAll();
+    public ResponseWrapper<Iterable<Topic>> getAll() {
+        Iterable<Topic> topics = service.getAll();
         return builder(topics, "给你所有topic", 200);
     }
 
     @GetMapping("/{id}")
-    public ResponseWrapper findById(@PathVariable("id") Long id) {
-        Optional<Topic> optionalTopic = topicRepository.findById(id);
-        if (optionalTopic.isPresent()) {
-            return builder(optionalTopic.get(), "给你这个topic", 200);
+    public ResponseWrapper<Topic> getById(@PathVariable("id") long id) {
+        Topic topic = service.getById(id);
+        if (null != topic) {
+            return builder(topic, "给你这个topic", 200);
         } else {
             return builder(null, "不存在这个topic", 404);
         }
     }
+
     @PostMapping
-    public ResponseWrapper save(@RequestBody Topic topic){
-        topic = topicRepository.save(topic);
-        return builder(topic,"新增了一个topic",201);
+    public ResponseWrapper<Topic> add(@RequestBody Topic topic) {
+        topic = service.add(topic);
+        return builder(topic, "新增了一个topic", 201);
     }
 }

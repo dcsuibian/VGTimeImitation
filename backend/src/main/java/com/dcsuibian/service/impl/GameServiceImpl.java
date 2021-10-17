@@ -1,47 +1,42 @@
 package com.dcsuibian.service.impl;
 
-import com.dcsuibian.entity.Album;
 import com.dcsuibian.entity.Game;
-import com.dcsuibian.repository.GameRepository;
-import com.dcsuibian.service.AlbumService;
+import com.dcsuibian.entity.po.GamePO;
+import static com.dcsuibian.entity.po.GamePO.convert;
+import com.dcsuibian.repository.GamePORepository;
 import com.dcsuibian.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+import static com.dcsuibian.service.impl.Util.batchConvert;
 
 @Service
 public class GameServiceImpl implements GameService {
+    private GamePORepository poRepository;
 
-    private GameRepository gameRepository;
-    private AlbumService albumService;
-
-    public GameServiceImpl(@Autowired GameRepository gameRepository,@Autowired AlbumService albumService) {
-        this.gameRepository = gameRepository;
-        this.albumService = albumService;
+    @Autowired
+    public GameServiceImpl(GamePORepository poRepository) {
+        this.poRepository = poRepository;
     }
 
     @Override
     public Game getById(long id) {
-        Optional<Game> optional = gameRepository.findById(id);
-        if(!optional.isPresent()){
-            return null;
-        }
-        Game game = optional.get();
-        List<Album> albums=new ArrayList<>();
-        Iterable<Album> iterable = albumService.getAllByGameId(id);
-        for(Album album:iterable){
-            albums.add(album);
-        }
-        game.setAlbums(albums);
-        return game;
+        Optional<GamePO> optional = poRepository.findById(id);
+        return optional.isPresent() ? GamePO.convert(optional.get()) : null;
     }
 
     @Override
     public Iterable<Game> getAll() {
-        return gameRepository.findAll();
+        return batchConvert(poRepository.findAll(), GamePO::convert);
     }
 
+    @Override
+    public Game add(Game game) {
+        return convert(poRepository.save(convert(game)));
+    }
+
+    @Override
+    public void deleteIfExists(long id) {
+        poRepository.deleteById(id);
+    }
 }

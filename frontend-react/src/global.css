@@ -1,0 +1,83 @@
+/* 设置网页用的字体 */
+* {
+  font-family: 'PingFang SC', 'Microsoft YaHei', '微软雅黑', 'SimSun', '宋体',
+    Arial, 'STHeiti', '华文黑体', Helvetica, Tahoma, Arial sans-serif;
+}
+/* 去除链接默认的难看样式 */
+a {
+  text-decoration: none;
+  color: #000;
+}
+/* 去除基本没人会用的列表默认样式 */
+ul {
+  list-style: none;
+}
+/* vgtime的蓝色 */
+.color {
+  color: #2abaca;
+}
+/* 浮动相关样式 */
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.clear {
+  clear: both;
+}
+/* 
+盒子模型设置
+边距、边框都设为0
+使用border-box作为大小的标准
+ */
+body,
+header,
+div,
+section,
+nav,
+article,
+iframe,
+textarea,
+blockquote,
+figure,
+figcaption,
+fieldset,
+footer,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+i,
+form,
+button,
+label,
+input,
+select,
+textarea,
+option,
+a,
+em,
+i,
+strong,
+aside,
+img,
+table,
+tr,
+td,
+tbody {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

@@ -4,8 +4,14 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  routes: [
-    { path: '/', component: '@/pages/index' },
-  ],
+  proxy: {
+    '/api': {
+      target: 'http://localhost:30119/api',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+  },
+  mfsu: {},
+  antd: false,
   fastRefresh: {},
 });

@@ -6,9 +6,11 @@ import com.dcsuibian.repository.TopicPORepository;
 import com.dcsuibian.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
-import static com.dcsuibian.service.impl.Util.batchConvert;
+
 import static com.dcsuibian.entity.po.TopicPO.convert;
+import static com.dcsuibian.util.Util.batchConvert;
 
 @Service
 public class TopicServiceImpl implements TopicService {

@@ -1,12 +1,16 @@
-package com.dcsuibian.service.impl;
+package com.dcsuibian.util;
+
+import com.dcsuibian.entity.vo.ResponseWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.BinaryOperator;
 import java.util.function.Function;
 
-class Util {
+public class Util {
+    public static <T> ResponseWrapper<T> builder(T data, String message, int code){
+        ResponseWrapper<T> res=new ResponseWrapper<>(data,message,code);
+        return res;
+    }
     public static <T, R> List<R> batchConvert(Iterable<T> iterable, Function<T, R> converter) {
         ArrayList<R> list = new ArrayList<>();
         for (var item : iterable) {

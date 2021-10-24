@@ -2,14 +2,13 @@ package com.dcsuibian.controller;
 
 import com.dcsuibian.entity.Album;
 import com.dcsuibian.entity.Game;
+import com.dcsuibian.entity.vo.ResponseWrapper;
 import com.dcsuibian.service.AlbumService;
 import com.dcsuibian.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
-import static com.dcsuibian.controller.Util.builder;
+import static com.dcsuibian.util.Util.builder;
 
 @RestController
 @RequestMapping("/api/games")

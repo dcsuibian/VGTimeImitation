@@ -1,14 +1,13 @@
 package com.dcsuibian.controller;
 
 import com.dcsuibian.entity.Topic;
+import com.dcsuibian.entity.vo.ResponseWrapper;
 import com.dcsuibian.service.TopicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
-import static com.dcsuibian.controller.Util.builder;
+import static com.dcsuibian.util.Util.builder;
 
 @Slf4j
 @RestController

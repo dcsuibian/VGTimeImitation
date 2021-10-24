@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static com.dcsuibian.service.impl.Util.batchConvert;
+import static com.dcsuibian.util.Util.batchConvert;
 
 @Service
 public class AlbumServiceImpl implements AlbumService {

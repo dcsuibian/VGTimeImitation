@@ -6,8 +6,10 @@ import com.dcsuibian.repository.UserPORepository;
 import com.dcsuibian.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
-import static com.dcsuibian.service.impl.Util.batchConvert;
+
+import static com.dcsuibian.util.Util.batchConvert;
 
 @Service
 public class UserServiceImpl implements UserService {

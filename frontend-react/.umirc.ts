@@ -11,7 +11,7 @@ export default defineConfig({
       pathRewrite: { '^/api': '' },
     },
   },
-  mfsu: {},
+  // mfsu: {},
   antd: false,
   fastRefresh: {},
 });

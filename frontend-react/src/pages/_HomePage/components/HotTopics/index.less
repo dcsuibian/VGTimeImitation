@@ -1,0 +1,119 @@
+ul.hotTopics {
+  width: 100%;
+  padding-bottom: 10px;
+  li {
+    float: left;
+    width: calc(25% - 12px);
+    margin-left: 16px;
+    position: relative;
+    // 图片撑高div
+    .imgLayer {
+      z-index: 0;
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+    .infoLayer{
+      z-index: 2; // 在shadow上面
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      padding: 10px;
+      p{
+        display: none;
+      }
+      h2{
+        color: #fff;
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 10px;
+      }
+      .fotBox{
+        height: 18px;
+        line-height: 18px;
+        span {
+          color: #9497a0;
+          font-size: 12px;
+          line-height: 22px;
+        }
+      }
+    }
+
+    .infoLayer::after {
+      content: '';
+      z-index: -1;
+      opacity: 0.7;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background: url('https://www.vgtime.com/resources/img/black_cover.png')
+        left center repeat-x;
+      background-size: 100% 100%;
+    }
+  }
+  li:first-child {
+    width: calc(50% - 8px);
+    margin: 0;
+    .shadow {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      background: url('https://www.vgtime.com/resources/img/ind_logo_bg.png')
+        no-repeat;
+      background-size: 100%;
+      img:first-child {
+        position: absolute;
+        width: 207px;
+        top: 10px;
+        left: 10px;
+      }
+      img:nth-child(2) {
+        position: absolute;
+        width: auto;
+        right: 60px;
+        top: 35px;
+      }
+    }
+    .infoLayer {
+      padding-right: 28%;
+      padding-left: 0;
+      p {
+        display: block;
+        width: 62%;
+        height: auto;
+        max-height: 66px;
+        padding-left: 35px;
+        line-height: 22px;
+        border-left: 6px solid #fff;
+        margin-bottom: 10px;
+        color: #fff;
+        font-size: 14px;
+      }
+      h2 {
+        padding-left: 35px;
+        font-size: 36px;
+        line-height: 50px;
+        max-height: 100px;
+        margin-bottom: 20px;
+      }
+      .fotBox {
+        padding-left: 35px;
+        width: 60%;
+      }
+    }
+  }
+  li:nth-child(n + 4) {
+    margin-top: 10px;
+  }
+}
+ul.hotTopics::after {
+  content: ' ';
+  display: block;
+  clear: both;
+}

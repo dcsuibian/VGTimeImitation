@@ -31,7 +31,7 @@ const Header: React.FC = () => {
           <ul className={styles.list}>
             {navItems.map((item, index) => {
               return (
-                <li className="left">
+                <li className="left" key={item}>
                   <a
                     href={''}
                     title={fakeTitle}

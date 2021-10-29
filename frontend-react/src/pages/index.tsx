@@ -1,7 +1,4 @@
-export default function HomePage() {
-  return (
-    <div>
-      <h1>首页</h1>
-    </div>
-  );
+import HomePage from "./_HomePage";
+export default ()=>{
+    return <HomePage/>
 }

@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import React from 'react';
 import styles from './index.less';
+import Footer from '@/components/Footer';
 const Layout: React.FC = ({ children }) => {
   return (
     <div className={styles.layout}>
@@ -8,6 +9,7 @@ const Layout: React.FC = ({ children }) => {
         <Header />
         {children}
       </div>
+      <Footer/>
     </div>
   );
 };

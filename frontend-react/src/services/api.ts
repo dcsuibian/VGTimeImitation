@@ -9,3 +9,8 @@ export async function getTopicById(id: number) {
     method: 'GET',
   });
 }
+export async function getHomePage() {
+  return request<ResponseWrapper<API.HomePage>>(`/api/home-page`, {
+    method: 'GET',
+  });
+}

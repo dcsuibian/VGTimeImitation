@@ -47,18 +47,24 @@ async function main() {
 async function main2() {
   let promises: Promise<any>[] = [];
   let minTopicId = 0;
-  await new Promise((resolve, reject) => {
-    connection.query(
-      `SELECT MIN(id) FROM \`topic\` `,
-      function (error, results) {
-        minTopicId = results[0]['MIN(id)'] || 1138376;
-        console.log('目前Topic的最小id是：', minTopicId);
-        resolve(null);
-      }
-    );
-  });
+  // await new Promise((resolve, reject) => {
+  //   connection.query(
+  //     `SELECT MIN(id) FROM \`topic\` `,
+  //     function (error, results) {
+  //       minTopicId = results[0]['MIN(id)'] || 1138376;
+  //       console.log('目前Topic的最小id是：', minTopicId);
+  //       resolve(null);
+  //     }
+  //   );
+  // });
 
-  for (let i = minTopicId - 1; i >= 1; i--) {
+  for (let i of [
+    1139294, 1139281, 1139275, 1139252, 1139221, 1139209, 1139195, 1139189,
+    1139179, 1139178, 1139184, 1139152, 1139148, 1139147, 1139142, 1136155,
+    1136014, 1135950, 1135946, 1138756, 1138950, 1138784, 1138766, 1138949,
+    1136112, 1138423, 1137825, 1065667, 1065666, 1065665, 1065644, 1139211,
+    1138776,
+  ]) {
     promises.push(
       getTopicVOById(i).then(topic => {
         console.log(
@@ -80,9 +86,8 @@ async function main2() {
       })
     );
   }
-  return await Promise.all(promises).then(res=>{
-    pipe.close();
-  })
+  await Promise.all(promises);
+  // pipe.close()
 }
 
 function continueWork(work: () => Promise<void>) {

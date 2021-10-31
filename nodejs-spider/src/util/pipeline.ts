@@ -54,6 +54,7 @@ export class PipeLine {
                 }
               );
             });
+            console.debug('authorId:',authorId)
             const editorId = await new Promise(resolve => {
               this.connection.query(
                 {
@@ -69,6 +70,7 @@ export class PipeLine {
                 }
               );
             });
+            console.debug('editorId:',editorId)
             // INSERT INTO topic(id,title,abstract,author_id,editor_id,time,content,cover) VALUES (1,'','',2,3,4,'','')
             await new Promise(resolve=>{
               this.connection.query({
@@ -83,8 +85,7 @@ export class PipeLine {
                   topic.content,
                   topic.cover,
                 ],
-              },(_,results)=>{
-
+              },(error,results)=>{
                 resolve(null)
               });
             })
@@ -97,6 +98,7 @@ export class PipeLine {
     }
   }
   close() {
+    console.log('pipeline关闭')
     this.connection.end();
   }
 }

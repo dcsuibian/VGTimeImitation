@@ -1,7 +1,7 @@
 import axios from 'axios';
 import PubSub from 'pubsub-js';
 
-const REQUESTS_PER_SECOND = 10;
+const REQUESTS_PER_SECOND = 2;
 const ALLOW_NEW_REQUEST_TOPIC = 'allow new request' + new Date().getTime();
 const MAX_IDLE_TIME = 10000;
 

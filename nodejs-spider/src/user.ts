@@ -46,3 +46,21 @@ export function getUserVOById(id: number):Promise<UserVO|null> {
     };
   });
 }
+export function getUserIdByName(name:string):Promise<number|null>{
+  const formData = new FormData();
+  formData.append('username', name);
+  return request({
+    method: 'post',
+    url: '/other/user.jhtml',
+    headers: {
+      ...formData.getHeaders(),
+    },
+    data: formData,
+  }).then(res => {
+    const { data, retcode }: { data: any; retcode: number } = res.data as any;
+    if (200 !== retcode||0===data.user_info.id) {
+      return null;
+    }
+    return data.user_info.id
+  });
+}

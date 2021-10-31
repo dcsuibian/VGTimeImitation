@@ -22,11 +22,11 @@ public class GameController {
         this.albumService = albumService;
     }
 
-    @GetMapping
-    public ResponseWrapper<Iterable<Game>> getAll() {
-        Iterable<Game> games = service.getAll();
-        return builder(games, "给你所有game", 200);
-    }
+//    @GetMapping
+//    public ResponseWrapper<Iterable<Game>> getAll() {
+//        Iterable<Game> games = service.getAll();
+//        return builder(games, "给你所有game", 200);
+//    }
 
     @GetMapping("/{id}")
     public ResponseWrapper<Game> getById(@PathVariable("id") Long id) {

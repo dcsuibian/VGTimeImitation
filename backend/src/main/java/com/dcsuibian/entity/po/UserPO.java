@@ -22,20 +22,10 @@ public class UserPO {
     private String title;
     private String phoneNumber;
     private String email;
-    public static User convert(UserPO po){
-        User user=new User();
-        user.setId(po.getId());
-        user.setPassword(po.getPassword());
-        user.setGender(po.getGender());
-        user.setAvatar(po.getAvatar());
-        user.setLevel(po.getLevel());
-        user.setTitle(po.getTitle());
-        user.setPhoneNumber(po.getPhoneNumber());
-        user.setEmail(po.getEmail());
-        return user;
-    }
-    public static UserPO convert(User user){
-        UserPO po=new UserPO();
+
+    public static UserPO convert(User user) {
+        if (null == user) return null;
+        UserPO po = new UserPO();
         po.setId(user.getId());
         po.setPassword(user.getPassword());
         po.setGender(user.getGender());
@@ -45,5 +35,20 @@ public class UserPO {
         po.setPhoneNumber(user.getPhoneNumber());
         po.setEmail(user.getEmail());
         return po;
+    }
+
+    public static User convert(UserPO po) {
+        if (null == po) return null;
+        User user = new User();
+        user.setId(po.getId());
+        user.setName(po.getName());
+        user.setPassword(po.getPassword());
+        user.setGender(po.getGender());
+        user.setAvatar(po.getAvatar());
+        user.setLevel(po.getLevel());
+        user.setTitle(po.getTitle());
+        user.setPhoneNumber(po.getPhoneNumber());
+        user.setEmail(po.getEmail());
+        return user;
     }
 }

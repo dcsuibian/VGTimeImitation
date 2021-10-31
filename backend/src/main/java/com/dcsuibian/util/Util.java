@@ -3,6 +3,7 @@ package com.dcsuibian.util;
 import com.dcsuibian.entity.vo.ResponseWrapper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -17,5 +18,27 @@ public class Util {
             list.add(converter.apply(item));
         }
         return list;
+    }
+
+    public static String listToString(List<String> list){
+        if(null==list||0==list.size()){
+            return null;
+        }
+        String result="";
+        for(var item:list){
+            if(item.length()>=1&&-1==item.indexOf("|")){
+                result+="".equals(result)?item:"|"+item;
+            }else{
+                throw new RuntimeException("不支持的类型");
+            }
+        }
+        return result;
+    }
+
+    public static List<String> stringToList(String s){
+        if(null==s){
+            return null;
+        }
+        return new ArrayList<>(Arrays.asList(s.split("\\|")));
     }
 }

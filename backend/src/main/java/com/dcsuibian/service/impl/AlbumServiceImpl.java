@@ -26,7 +26,7 @@ public class AlbumServiceImpl implements AlbumService {
         return optional.isPresent() ? AlbumPO.convert(optional.get()) : null;
     }
 
-    @Override
+//    @Override
     public Iterable<Album> getAll() {
         return batchConvert(poRepository.findAll(), AlbumPO::convert);
     }

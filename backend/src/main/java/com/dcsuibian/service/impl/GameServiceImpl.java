@@ -27,18 +27,18 @@ public class GameServiceImpl implements GameService {
         return optional.isPresent() ? GamePO.convert(optional.get()) : null;
     }
 
-    @Override
-    public Iterable<Game> getAll() {
-        return batchConvert(poRepository.findAll(), GamePO::convert);
-    }
+//    @Override
+//    public Iterable<Game> getAll() {
+//        return batchConvert(poRepository.findAll(), GamePO::convert);
+//    }
 
     @Override
     public Game add(Game game) {
         return convert(poRepository.save(convert(game)));
     }
 
-    @Override
-    public void deleteIfExists(long id) {
-        poRepository.deleteById(id);
-    }
+//    @Override
+//    public void deleteIfExists(long id) {
+//        poRepository.deleteById(id);
+//    }
 }

@@ -18,8 +18,8 @@ public class Topic {
     private User author;
     private User editor;
     private Instant time;
-    @JsonManagedReference
-    private List<TopicComment> comments;
+//    @JsonManagedReference
+//    private List<TopicComment> comments;
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private String __abstract;

@@ -20,11 +20,11 @@ public class TopicController {
         this.service = service;
     }
 
-    @GetMapping
-    public ResponseWrapper<Iterable<Topic>> getAll() {
-        Iterable<Topic> topics = service.getAll();
-        return builder(topics, "给你所有topic", 200);
-    }
+//    @GetMapping
+//    public ResponseWrapper<Iterable<Topic>> getAll() {
+//        Iterable<Topic> topics = service.getAll();
+//        return builder(topics, "给你所有topic", 200);
+//    }
 
     @GetMapping("/{id}")
     public ResponseWrapper<Topic> getById(@PathVariable("id") long id) {

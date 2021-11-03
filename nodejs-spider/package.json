@@ -10,6 +10,7 @@
     "cheerio": "^1.0.0-rc.10",
     "jsdom": "^18.0.0",
     "mysql": "^2.18.1",
+    "mysql2": "^2.3.2",
     "pubsub-js": "^1.9.3"
   },
   "devDependencies": {

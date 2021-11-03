@@ -3,7 +3,7 @@ import PubSub from 'pubsub-js';
 
 const REQUESTS_PER_SECOND = 2;
 const ALLOW_NEW_REQUEST_TOPIC = 'allow new request' + new Date().getTime();
-const MAX_IDLE_TIME = 10000;
+const MAX_IDLE_TIME = 3000;
 
 console.log('初始化request模块中，当前时间为：', new Date());
 console.log('每秒允许请求数：', REQUESTS_PER_SECOND);
@@ -14,21 +14,24 @@ let allowance = 1;
 const queue: number[] = [];
 let idleTime = 0;
 // 每隔一段时间增加请求余量
-const timer=setInterval(() => {
+const timer = setInterval(() => {
   // 保证当前余量不超过REQUESTS_PER_SECOND
-  allowance =
-    allowance + 1 > REQUESTS_PER_SECOND ? REQUESTS_PER_SECOND : allowance + 1;
+  allowance = Math.min(REQUESTS_PER_SECOND, allowance + 1);
   if (queue.length === 0) {
-      // 至少(1000 / REQUESTS_PER_SECOND)秒没新的请求了
+    // 至少(1000 / REQUESTS_PER_SECOND)秒没新的请求了
     idleTime += 1000 / REQUESTS_PER_SECOND;
-    if(idleTime>=MAX_IDLE_TIME){
-        clearInterval(timer);
-        console.log('到达最大空闲时间，request计时器停止')
-    }else{
-      const leftTime=(MAX_IDLE_TIME-idleTime)/1000
-      const closedInt=Math.abs(leftTime-parseInt(String(leftTime)))<Math.abs(leftTime-parseInt(String(leftTime+1)))?parseInt(String(leftTime)):parseInt(String(leftTime+1))
-      if(Math.abs(leftTime-closedInt)<1e-6){
-        console.log('举例request销毁还有%d秒',closedInt)
+    if (idleTime >= MAX_IDLE_TIME) {
+      clearInterval(timer);
+      console.log('到达最大空闲时间，request计时器停止');
+    } else {
+      const leftTime = (MAX_IDLE_TIME - idleTime) / 1000;
+      const closedInt =
+        Math.abs(leftTime - parseInt(String(leftTime))) <
+        Math.abs(leftTime - parseInt(String(leftTime + 1)))
+          ? parseInt(String(leftTime))
+          : parseInt(String(leftTime + 1));
+      if (Math.abs(leftTime - closedInt) < 1e-6) {
+        console.log('举例request销毁还有%d秒', closedInt);
       }
     }
     return;

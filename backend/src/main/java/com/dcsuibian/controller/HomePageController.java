@@ -1,6 +1,7 @@
 package com.dcsuibian.controller;
 
 import com.dcsuibian.entity.Topic;
+import com.dcsuibian.entity.qo.TopicQO;
 import com.dcsuibian.entity.vo.HomePageVO;
 import com.dcsuibian.entity.vo.ResponseWrapper;
 import com.dcsuibian.service.TopicService;
@@ -27,7 +28,7 @@ public class HomePageController {
     @GetMapping
     public ResponseWrapper<HomePageVO> get() {
         HomePageVO vo = new HomePageVO();
-        long[] hotNewsIds = {1139211, 1138949, 1138756, 1138950, 1138776};
+        long[] hotNewsIds = {1139357, 1139112, 1139211, 1138949, 1138756};
         long[] guideIds = {1136155, 1136014, 1135950, 1135946};
         long[] reviewIds = {1138756, 1138950, 1138784, 1138766};
         long[] cultureIds = {1138949, 1136112, 1138423, 1137825};
@@ -53,6 +54,7 @@ public class HomePageController {
                 case 4:vo.setCartoons(list);break;
             }
         }
+        vo.setNews(topicService.get(new TopicQO(),1,16).getData());
         return builder(vo, "给你生成首页所需要的的所有信息", 200);
     }
 }

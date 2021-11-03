@@ -1,8 +1,11 @@
 package com.dcsuibian.controller;
 
 import com.dcsuibian.entity.Topic;
+import com.dcsuibian.entity.qo.TopicQO;
+import com.dcsuibian.entity.vo.PageWrapper;
 import com.dcsuibian.entity.vo.ResponseWrapper;
 import com.dcsuibian.service.TopicService;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +23,14 @@ public class TopicController {
         this.service = service;
     }
 
-//    @GetMapping
-//    public ResponseWrapper<Iterable<Topic>> getAll() {
-//        Iterable<Topic> topics = service.getAll();
-//        return builder(topics, "给你所有topic", 200);
-//    }
+    @GetMapping
+    public ResponseWrapper<PageWrapper<Topic>> get(
+            @ApiParam(required = true) long pageNo,
+            @ApiParam(required = true) long pageSize
+    ) {
+        TopicQO qo = new TopicQO();
+        return builder(service.get(qo, pageNo, pageSize), "给你", 200);
+    }
 
     @GetMapping("/{id}")
     public ResponseWrapper<Topic> getById(@PathVariable("id") long id) {

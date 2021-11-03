@@ -14,4 +14,6 @@ export default defineConfig({
   // mfsu: {},
   antd: false,
   fastRefresh: {},
+  title:'游戏时光 - vgtime.com',
+  outputPath:'../backend/src/main/resources/static'
 });

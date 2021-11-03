@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './index.less';
+import { history } from 'umi';
 import moment from 'moment';
 const HotTopics: React.FC<{
   topics: {
@@ -10,7 +11,7 @@ const HotTopics: React.FC<{
     author: {
       name: string;
     };
-    time:number,
+    time: number;
   }[];
 }> = ({ topics }) => {
   return (
@@ -18,7 +19,13 @@ const HotTopics: React.FC<{
       {topics.map((topic, index) => {
         return (
           <li key={topic.id}>
-            <a href={'/topics/' + topic.id}>
+            <a
+              href={'/topics/' + topic.id}
+              onClick={(event) => {
+                history.push('/topics/' + topic.id);
+                event.preventDefault();
+              }}
+            >
               {
                 // 给第一个加logo和“游戏时光”标题
                 0 === index ? (
@@ -42,7 +49,9 @@ const HotTopics: React.FC<{
                 <h2 title={topic.title}>{topic.title}</h2>
                 <div className={styles.fotBox}>
                   <span className={'left'}>{topic.author.name}</span>
-                  <span className={'right'}>{moment(topic.time).format('YYYY-MM-DD')}</span>
+                  <span className={'right'}>
+                    {moment(topic.time).format('YYYY-MM-DD')}
+                  </span>
                 </div>
               </div>
             </a>

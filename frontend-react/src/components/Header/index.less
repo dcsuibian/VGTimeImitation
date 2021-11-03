@@ -3,6 +3,21 @@
   height: 81px; // 80px的内容区+1px的下边框
   border-bottom: 1px solid rgba(85, 85, 85, 0.05);
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 12%), 0 6px 16px 0 rgba(0, 0, 0, 15%);
+  position: relative;
+  .logo{
+    position: absolute;
+    height: 100%;
+    width: 188px;
+    top:0;
+    left:0;
+    background: url('https://www.vgtime.com/resources/img/logo_bg.svg') left bottom no-repeat;
+    a{
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.vgtime.com/resources/img/logo.svg') center no-repeat;
+    }
+  }
   .message,
   .navAndSearch {
     width: 100%;

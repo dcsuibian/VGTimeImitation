@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './index.less';
+import { history } from 'umi';
 const Header: React.FC = () => {
   const fakeTitle = '只是照抄了原网页罢了，不要点';
   const navItems = [
@@ -15,6 +16,12 @@ const Header: React.FC = () => {
   const activeItemIndex = 0;
   return (
     <header className={styles.header}>
+      <div className={styles.logo}>
+        <a href={''} onClick={(event)=>{
+          history.push('/')
+          event.preventDefault()
+        }}></a>
+      </div>
       <div className={styles.message}>
         <span>
           <a href={''} title={fakeTitle}>

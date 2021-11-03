@@ -1,48 +1,59 @@
-// import { getAllTopics, getTopicById } from '@/services';
-// import { useState } from 'react';
-// import { useHistory, useLocation, useParams, useRouteMatch } from 'umi';
-// import styles from './index.less';
+import { getTopicById } from '@/services/api';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
+import { useHistory, useLocation, useParams, useRouteMatch } from 'umi';
+import styles from './index.less';
 
-// export default () => {
-//   // const history=useHistory()
-//   // const location=useLocation()
-//   const [title,setTitle]=useState('')
-//   const [abstract,setAbstract]=useState('')
-//   const [__html, set__Html] = useState('');
-//   const params: any = useParams();
-//   const id: number = Number(params.id);
-//   console.log(`topic's id is:`, id);
-//   getTopicById(id).then((res) => {
-//     if (res.code < 300) {
-//       console.log('topic:', res.data);
-//       set__Html(res.data.content);
-//       setTitle(res.data.title)
-//       setAbstract(res.data.abstract)
-//     }
-//   });
-//   // // const routeMatch=useRouteMatch()
-//   // // console.log('history:',history)
-//   // // console.log('location:',location)
-//   // // console.log('params:',params)
-//   // // console.log('routeMatch:',routeMatch)
-//   // // getAllTopics().then((res) => {
-//   // //   console.log(res);
-//   // // });
-//   return (
-//     <div className={styles.center}>
-//       <article>
-//         <h1 className={styles.title}>
-//           {title}
-//         </h1>
-//         <div className={styles.metaInfo}>
-//           <span className={styles.timeBox}>2021-06-28 15:43:08</span>
-//         </div>
-//         <div className={styles.abstract}>
-//           <p>{abstract}</p>
-//         </div>
+type Topic = {
+  id: number;
+  abstract: string;
+  content: string;
+  time: number;
+  title: string;
+  author: {
+    name: string;
+  };
+};
 
-//         <div className={styles.content} dangerouslySetInnerHTML={{ __html }} />
-//       </article>
-//     </div>
-//   );
-// };
+export default () => {
+  const [topic, setTopic]: [Topic, React.Dispatch<Topic>] = useState({
+    id: 0,
+    abstract: '',
+    time: 0,
+    title: '',
+    content: '',
+    author: {
+      name: '',
+    },
+  });
+  const params = useParams<{ id: string }>();
+  const id: number = Number(params.id);
+  useEffect(() => {
+    getTopicById(id).then((res) => {
+      if (res.code != 200) {
+        throw new Error(res.message);
+      }
+      setTopic(res.data!);
+    });
+  });
+  return (
+    <div className={styles.center}>
+      <article>
+        <h1 className={styles.title}>{topic.title}</h1>
+        <div className={styles.metaInfo}>
+          <span className={styles.timeBox}>
+            {moment(topic.time).format('YYYY-MM-DD HH:mm:ss')}
+          </span>
+        </div>
+        <div className={styles.abstract}>
+          <p>{topic.abstract}</p>
+        </div>
+
+        <div
+          className={styles.content}
+          dangerouslySetInnerHTML={{ __html: topic.content }}
+        />
+      </article>
+    </div>
+  );
+};
